@@ -1,0 +1,1 @@
+export type OrderStatus = 'new'|'pending'|'shipped'|'done';

@@ -1,4 +1,6 @@
 *.csv
+orders.json
+apiResponse.json
 
 # Node.js dependencies
 node_modules/
