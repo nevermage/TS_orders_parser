@@ -20,9 +20,9 @@ export function sortOrders(orders: Order[], field: keyof Order, sortingOrder: So
 }
 
 export function filterOrders(orders: Order[], filters: Partial<Order>): Order[] {
-    for (const [field, filterValue] of Object.entries(filters)) {
-        orders = orders.filter((order) => order[field as keyof Order] === filterValue);
-    }
-
-    return orders;
+    return orders.filter((order: Order) => {
+       return Object.entries(filters).every(
+           ([key, value]) => order[key as keyof Order] === value
+       );
+    });
 }
