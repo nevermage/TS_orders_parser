@@ -8,11 +8,11 @@ export async function fetchOrders(url: string): Promise<Order[]> {
         throw new Error('Failed to fetch orders.');
     }
 
-    return data.data.map((order: ResponseOrder) => ({
-        id: order.id,
-        status: order.status,
-        userId: order.userId,
-        timestamp: order.timestamp,
-        totalAmount: order.totalAmount,
+    return data.data.map(({id, status, userId, timestamp, totalAmount}: ResponseOrder) => ({
+        id: id,
+        status: status,
+        userId: userId,
+        timestamp: timestamp,
+        totalAmount: totalAmount,
     }));
 }

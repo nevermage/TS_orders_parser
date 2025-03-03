@@ -9,6 +9,6 @@ export interface ResponseOrder {
     timestamp: string,
     items: ResponseProduct[],
     totalAmount: number,
-    shippingAddress: ResponseAddress,
-    estimatedDelivery: string
+    shippingAddress?: ResponseAddress,
+    estimatedDelivery?: string
 }

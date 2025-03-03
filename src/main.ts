@@ -7,14 +7,23 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-main(process.env.API_URL as string, {field: 'totalAmount'}, null, 'orders.json');
+main({
+    url: process.env.API_URL as string,
+    sorting: {field: 'totalAmount'},
+    filenameToSave: 'orders.json'
+});
 
-async function main<T extends keyof Order>(
+async function main<T extends keyof Order>({
+    url,
+    sorting,
+    filters,
+    filenameToSave}:
+{
     url: string,
-    sorting?: { field: T, ordering?: SortingOrder } | null,
+    sorting?: {field: T, ordering? : SortingOrder} | null,
     filters?: Partial<Order> | null,
     filenameToSave?: string
-): Promise<void> {
+}): Promise<void> {
     try {
         const orders: Order[] = await fetchOrders(url);
         const sortedOrders: Order[] = sorting ? sortOrders(orders, sorting.field, sorting.ordering) : orders;
